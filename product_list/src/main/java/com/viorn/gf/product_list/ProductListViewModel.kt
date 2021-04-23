@@ -3,6 +3,7 @@ package com.viorn.gf.product_list
 import androidx.lifecycle.MutableLiveData
 import com.viorn.gf.prodict_list.boundary.IProductListInteractor
 import com.viorn.gf.prodict_list.boundary.ProductItemAdapterItem
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import javax.inject.Inject
@@ -32,12 +33,12 @@ class ProductListViewModel @Inject constructor(
 
     override fun loadFirstPage() {
         loadingLiveData.value = true
-        productListInteractor.loadFirstPage().subscribe(
+        productListInteractor.loadFirstPage().observeOn(AndroidSchedulers.mainThread()).subscribe(
             {
                 productListLiveData.value = it
             },
             {
-
+                it.printStackTrace()
             },
             {
                 loadingLiveData.value = false
@@ -47,12 +48,12 @@ class ProductListViewModel @Inject constructor(
 
     override fun loadNextPage() {
         loadingLiveData.value = true
-        productListInteractor.loadNextPage().subscribe(
+        productListInteractor.loadNextPage().observeOn(AndroidSchedulers.mainThread()).subscribe(
             {
                 productListLiveData.value = productListLiveData.value?.plus(it)
             },
             {
-
+                it.printStackTrace()
             },
             {
                 loadingLiveData.value = false
