@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MultyTypeAdapter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/multy_type_adapter" vcs="Git" />
   </component>
 </project>
